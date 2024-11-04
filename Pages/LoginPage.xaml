@@ -1,0 +1,33 @@
+﻿<Page x:Class="CarService.Pages.LoginPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarService.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1600"
+      Title="Авторизация">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource BlockCommon}"
+                           Text="Логин:"/>
+                <TextBox Name="TBoxLogin"
+                         Width="200"
+                         Margin="2"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource BlockCommon}"
+                           Text="Пароль"/>
+                <PasswordBox Name="PBoxPassword"
+                             Width="200"
+                             Margin="2"/>
+            </StackPanel>
+            <Button Name="BtnLogin"
+                    Click="BtnLogin_Click"
+                    Content="Войти"
+                    HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Page>

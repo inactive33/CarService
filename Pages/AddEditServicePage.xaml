@@ -1,0 +1,78 @@
+﻿<Page x:Class="CarService.Pages.AddEditServicePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CarService.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="900" d:DesignWidth="1600"
+      Title="Добавление услуги">
+
+    <Grid>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center" 
+                        VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}"
+                               Text="Название"/>
+                    <TextBox Name="TBoxTitle"
+                             Width="200"
+                             Margin="3"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}"
+                               Text="Стоимость"/>
+                    <TextBox Name="TBoxCost"
+                             Width="200"
+                             Margin="3"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}"
+                               Text="Длительность (мин)"/>
+                    <TextBox Name="TBoxDuration"
+                             Width="200"
+                             Margin="3"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}"
+                               Text="Описание"/>
+                    <TextBox Name="TBoxDescription"
+                             Height="30"
+                             Width="200"
+                             Margin="3"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource BlockCommon}"
+                               Text="Скидка"/>
+                    <TextBox Name="TBoxDiscount"
+                             Margin="3"
+                             Width="200"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            Grid.Column="1">
+                    <Border Margin="5" Height="175" Width="200" BorderBrush="{StaticResource ColorAccent}"
+                    BorderThickness="1">
+                        <Image Name="ImageService"/>
+                    </Border>
+                    <Button Height="30" 
+                            Width="200" 
+                            Margin="5" 
+                            Name="BtnSelectImage" 
+                            Click="BtnSelectImage_Click" 
+                            Content="Выбрать фотографию"/>
+                    <Button Height="30" 
+                            Width="200" 
+                            Margin="5" 
+                            Name="BtnSaveImage"
+                            Click="BtnSaveImage_Click"
+                            Content="Сохранить"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
