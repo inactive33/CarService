@@ -93,6 +93,70 @@
 a) Нажимаем F7
 b) Обращаемся к контексту модели: DGridMain.ItemsSource = NobelLaureatesEntities.GetContext().Laureaties.ToList();
 
-=== Редактирование верстка ===
+=== Add/Edit верстка ===
+[AddEdit.cs] 
+private Base _currentTable = new Base();
+
+1. В конструкторе public AddEdit() дописать:
+DataContext = _currentTable;
+2. В верстке TextBox добавить Text={Binding Поле}
+   -Если comboBox-
+   SelectedItem="{Binding Country} DisplayMemberPath = {Binding Name}"
+   
+3. StringBuilder errors/errors.AppendLines(" Текст ошибки ");
+   if (errors.Length > 0) {MessageBox.Show(errors.ToString());
+   return;}
+   
+4. if (_currentTable.Id == 0) BaseEntities.GetContext().Base.Add(_currentTable)
+   try
+   {
+	BaseEntities.GetContext().SaveChanges();
+	MessageBox("Save");
+   } catch (Exception ex) {/*Vivod*/}
+
+-- [+Событие в MainPage] IsVisibleChange --
+.cs: if (Visibility == Visibility.Visible) 
+{
+	BaseEntities.GetContext().ChangeTracker.Entries().ToList().ForEach(p => p.Reload());
+ 	DGridBase.ItemSource = BaseEntities.GetContext().Base.ToList();
+}
+5. Функция редактирования:
+Change struct:
+        public PageAddEdit(Laureaty selected_laureat)
+        {
+            InitializeComponent();
+
+            if (selected_laureat != null)
+            {
+                _currentLaureat = selected_laureat;
+            }
+            DataContext = _currentLaureat;
+        }
+
+1. в mainpage:
+           private void BtnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            Manager.FrameMain.Navigate(new PageAddEdit((sender as Button).DataContext as Laureaty));
+        }
+   
+2. Delete:
+   	private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var laureatyForRemoving = DGridMain.SelectedItems.Cast<Laureaty>().ToList();
+
+            if (MessageBox.Show($"Удалить следующие: {laureatyForRemoving.Count()} элементов?", 
+                "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes) 
+            {
+                try
+                {
+                    NobelLaureatesEntities.GetContext().Laureaties.RemoveRange(laureatyForRemoving);
+                    NobelLaureatesEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Данные удалены!");
+
+                    DGridMain.ItemsSource = NobelLaureatesEntities.GetContext().Laureaties.ToList();
+                }
+                catch (Exception ex) { MessageBox.Show(ex.Message); }
+            }
+        }
 
 
